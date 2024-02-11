@@ -98,10 +98,10 @@ public class Policy {
         this.policyholderWeight = policyholderWeight;
     }
     public double calculateBMI() {
-    double heightInInches = policyholderHeight;
-    double weightInPounds = policyholderWeight;
+    double heightInInches = this.policyholderHeight;
+    double weightInPounds = this.policyholderWeight;
     return (weightInPounds * 703) / (heightInInches * heightInInches);
-}
+   }
 
    public double calculatePolicyPrice() {
     double baseFee = 600.0;
