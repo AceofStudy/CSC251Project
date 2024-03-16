@@ -1,39 +1,36 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Project_Aaron_Ilyas {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+    public static void main(String[] args) throws FileNotFoundException{
+        // Path to the text file containing policy information
+        String filePath = "PolicyInformation";
+        File file = new File(filePath);
 
-        System.out.print("Please enter the Policy Number: ");
-        int policyNumber = scanner.nextInt();
-        scanner.nextLine();
-        
-        System.out.print("\nPlease enter the Provider Name: ");
-        String providerName = scanner.nextLine();
+        Scanner fileScanner = new Scanner(file);
 
-        System.out.print("\nPlease enter the Policyholder’s First Name: ");
-        String firstName = scanner.nextLine();
+        // Reading data from the file
+        int policyNumber = fileScanner.nextInt();
+        fileScanner.nextLine(); // Consume the newline
 
-        System.out.print("\nPlease enter the Policyholder’s Last Name: ");
-        String lastName = scanner.nextLine();
+        String providerName = fileScanner.nextLine();
+        String firstName = fileScanner.nextLine();
+        String lastName = fileScanner.nextLine();
+        int age = fileScanner.nextInt();
+        fileScanner.nextLine(); // Consume the newline
 
-        System.out.print("\nPlease enter the Policyholder’s Age: ");
-        int age = scanner.nextInt();
-        scanner.nextLine();
-        
-        System.out.print("\nPlease enter the Policyholder’s Smoking Status (smoker/non-smoker): ");
-        String smokingStatus = scanner.nextLine();
+        String smokingStatus = fileScanner.nextLine();
+        int height = fileScanner.nextInt();
+        fileScanner.nextLine(); // Consume the newline
 
-        System.out.print("\nPlease enter the Policyholder’s Height (in inches): ");
-        double height = scanner.nextDouble();
-        scanner.nextLine();
-        
-        System.out.print("\nPlease enter the Policyholder’s Weight (in pounds): ");
-        double weight = scanner.nextDouble();
-        scanner.nextLine();
+        int weight = fileScanner.nextInt();
+        fileScanner.nextLine(); // Consume any potentially trailing newline
 
-        Policy policy = new Policy(policyNumber, providerName, firstName, lastName, age, smokingStatus, (int) height, (int) weight);
+        // Creating the Policy object with the read values
+        Policy policy = new Policy(policyNumber, providerName, firstName, lastName, age, smokingStatus, height, weight);
 
+        // Outputting the policy information
         System.out.println("\nPolicy Number: " + policy.getPolicyNumber());
         System.out.println("Provider Name: " + policy.getProviderName());
         System.out.println("Policyholder’s First Name: " + policy.getPolicyholderFirstName());
@@ -45,6 +42,6 @@ public class Project_Aaron_Ilyas {
         System.out.printf("Policyholder’s BMI: %.2f\n", policy.calculateBMI());
         System.out.printf("Policy Price: $%.2f\n", policy.calculatePolicyPrice());
 
-        scanner.close();
+        fileScanner.close();
     }
 }
